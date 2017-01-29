@@ -1,0 +1,33 @@
+---
+title: "Musculoskeletal Network Experimentation in R"
+author: "Sean Collins"
+date: "1/29/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Musculoskeletal Network Experimentation in R
+
+Just a notebook to do some experimentation in R for the construction and analysis of anatomical / musculoskeletal networks.
+
+Learning to use R for graph analysis through the book:
+Højsgaard, Søren; Edwards, David; Lauritzen, Steffen (2012-02-22). Graphical Models with R (Use R!) (Kindle Location 292). Springer New York.
+
+
+```{r load packages}
+library(gRbase)
+library(Rgraphviz)
+```
+
+## Load Upper Extremity Anatomical Network
+
+```{r pressure, echo=FALSE}
+ue_am<-read.csv("AdultForeLimb.csv",row.names = 1, header= TRUE)
+ue_am<-as.matrix(ue_am)
+ue_network<-as(ue_am, "graphNEL")
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
