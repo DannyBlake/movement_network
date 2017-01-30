@@ -5,7 +5,7 @@ date: "1/29/2017"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE, error=FALSE, warning=FALSE, message=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -17,17 +17,35 @@ Learning to use R for graph analysis through the book:
 Højsgaard, Søren; Edwards, David; Lauritzen, Steffen (2012-02-22). Graphical Models with R (Use R!) (Kindle Location 292). Springer New York.
 
 
-```{r load packages}
+```{r load packages, echo=FALSE}
 library(gRbase)
 library(Rgraphviz)
+library(igraph)
 ```
 
 ## Load Upper Extremity Anatomical Network
 
-```{r pressure, echo=FALSE}
-ue_am<-read.csv("AdultForeLimb.csv",row.names = 1, header= TRUE)
-ue_am<-as.matrix(ue_am)
-ue_network<-as(ue_am, "graphNEL")
+```{r load and convert}
+#Load csv file which is an adjacency matrix
+ue<-read.csv("AdultForeLimb.csv",row.names = 1, header= TRUE)
+#Convert dataframe to a matrix
+aue<-as.matrix(ue)
+iue<-graph_from_adjacency_matrix(aue, mode = "undirected")
+gue<-as_graphnel(iue)
+
+
+x<-as(aue,"graphNEL", "undirected")
+
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r load and convert}
+#Load csv file which is an adjacency matrix
+ue<-read.csv("AdultForeLimb.csv",row.names = 1, header= TRUE)
+#Convert dataframe to a matrix
+aue<-as.matrix(ue)
+iue<-graph_from_adjacency_matrix(aue, mode = "undirected")
+gue<-as_graphnel(iue)
+```
+
+
+
